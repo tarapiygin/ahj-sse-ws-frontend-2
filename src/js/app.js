@@ -1,7 +1,7 @@
 import API from './API';
 import ChatWidget from './ChatWidget';
 
-const api = new API('https://chat-widget-sse-ws3.herokuapp.com/users');
+const api = new API('https://ahj-sse-ws-backend-2.herokuapp.com/users');
 
 const loginForm = document.querySelector('.login_form');
 const enterBtn = loginForm.querySelector('.button');
