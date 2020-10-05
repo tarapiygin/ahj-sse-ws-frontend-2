@@ -1,0 +1,115 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form {
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  padding: 20px;
+}
+
+.error_wrapper {
+  position: absolute;
+  top: 40%;
+  right: 40%;
+  background-color: #ffffff;
+  width: 400px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: space-around;
+}
+
+.login_input {
+  width: 100%;
+}
+
+.button {
+  border: 1px solid;
+  padding: 10px 30px;
+  border-radius: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.chat {
+  display: flex;
+}
+
+.users {
+  border: 1px solid black;
+  width: 150px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.user_icon {
+  width: 35px;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+.username.active_user {
+  color: red;
+}
+
+.chat_container {
+  border: 1px solid;
+  padding: 10px;
+  width: 500px;
+  border-radius: 15px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat_field {
+  height: 100%;
+  overflow: auto;
+  padding: 0;
+  padding-right: 15px;
+}
+
+.message_item {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.message_item.active_user {
+  align-items: flex-end;
+}
+
+.active_user > .message_header {
+  color: red;
+}
+
+.none {
+  display: none;
+}
