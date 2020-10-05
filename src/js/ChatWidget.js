@@ -1,4 +1,7 @@
+import moment from 'moment';
 import API from './API';
+
+moment.locale('ru');
 
 export default class ChatWidget {
   constructor(name) {
@@ -45,20 +48,16 @@ export default class ChatWidget {
       } = JSON.parse(message.data);
       const messageItem = document.createElement('div');
       messageItem.classList.add('message_item');
+      let userName = name;
       if (name === this.userName) {
+        userName = 'You';
         messageItem.classList.add('active_user');
       }
-      const messageDate = new Date(date);
-      const day = messageDate.getDate();
-      const month = messageDate.getMonth() + 1;
-      const year = messageDate.getFullYear();
-      const hour = messageDate.getHours();
-      const minute = messageDate.getMinutes();
-      const second = messageDate.getSeconds();
+      const messageDate = moment(date).format('HH:mm:ss MM.DD.YYYY');
       messageItem.innerHTML = `
       <div class="message_header">
-        <span>${name}</span>
-        <span>${hour}:${minute}:${second} ${day}.${month}.${year}</span>
+        <span>${userName}</span>
+        <span>${messageDate}</span>
       </div>
       <div class="message_text">
       ${msg}
@@ -97,12 +96,14 @@ export default class ChatWidget {
       const newUser = document.createElement('div');
       newUser.classList.add('user');
       let activeUser = '';
+      let { name } = user;
       if (user.name === this.userName) {
         activeUser = 'active_user';
+        name = 'You';
       }
       newUser.innerHTML = `
       <div class="user_icon"></div>
-      <div class="username ${activeUser}">${user.name}</div>
+      <div class="username ${activeUser}">${name}</div>
       `;
       usersList.appendChild(newUser);
     }
