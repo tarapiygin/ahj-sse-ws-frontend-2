@@ -8,6 +8,7 @@ export default class ChatWidget {
     this.userName = name;
     this.url = 'wss://ahj-sse-ws-backend-2.herokuapp.com/ws';
     this.api = new API('https://ahj-sse-ws-backend-2.herokuapp.com/users');
+    this.ws = null;
   }
 
   init() {
@@ -16,25 +17,8 @@ export default class ChatWidget {
     this.chatInput = this.chat.querySelector('.chat_input');
     this.chatWindow = document.querySelector('.chat_field');
     this.ws = new WebSocket(this.url);
-    this.ws.addEventListener('message', (event) => {
-      this.createMessage(event);
-    });
-
-    this.ws.addEventListener('error', () => {
-      throw new Error('Ошибка в работе чата');
-    });
+    this.registerEvents();
     this.drawUsers();
-
-    window.addEventListener('beforeunload', () => {
-      this.api.remove(this.userName);
-    });
-
-    this.chatInput.addEventListener('keypress', (evt) => {
-      if (evt.key === 'Enter') {
-        this.sendMessage(this.chatInput.value);
-        this.chatInput.value = '';
-      }
-    });
   }
 
   createMessage(message) {
@@ -107,5 +91,30 @@ export default class ChatWidget {
       `;
       usersList.appendChild(newUser);
     }
+  }
+
+  registerEvents() {
+    this.ws.addEventListener('message', (event) => {
+      this.createMessage(event);
+    });
+
+    this.ws.addEventListener('error', () => {
+      throw new Error('Ошибка в работе чата');
+    });
+
+    window.addEventListener('beforeunload', () => {
+      const message = {
+        method: 'DELETE',
+        name: this.userName,
+      };
+      this.ws.send(JSON.stringify(message));
+    });
+
+    this.chatInput.addEventListener('keypress', (evt) => {
+      if (evt.key === 'Enter') {
+        this.sendMessage(this.chatInput.value);
+        this.chatInput.value = '';
+      }
+    });
   }
 }
