@@ -1,4 +1,4 @@
-# ahj-sse-ws-2 - frontend
+# ahj-sse-ws-2 - frontend new
 --------------------
 [![Build status](https://ci.appveyor.com/api/projects/status/es0d1votiywrjanx?svg=true)](https://ci.appveyor.com/project/tarapiygin/ahj-sse-ws-frontend-2)
 
